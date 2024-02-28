@@ -12,7 +12,6 @@ namespace VitHealth.Entities.EntityConfig.Concrete
             builder.Property(p => p.PatientName).HasMaxLength(50);
             builder.Property(p => p.PatientSurname).HasMaxLength(70);
             builder.Property(p => p.IdentificationNumber).HasMaxLength(11);
-            builder.Property(p => p.Password).HasMaxLength(50);
             builder.Property(p => p.PhoneNumber).HasMaxLength(11);
         }
 

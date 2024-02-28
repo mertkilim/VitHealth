@@ -8,9 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Migrations\PgSql\" />
-    <Folder Include="Migrations\SqlServer\" />
-    <Folder Include="Repositories\Abstract\" />
-    <Folder Include="Repositories\Concrete\" />
   </ItemGroup>
 
   <ItemGroup>

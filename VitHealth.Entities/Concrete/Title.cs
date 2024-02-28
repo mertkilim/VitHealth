@@ -1,13 +1,10 @@
-﻿namespace VitHealth.Entities.Concrete
+﻿using VitHealth.Entities.Abstract;
+
+namespace VitHealth.Entities.Concrete
 {
-    public enum Title
+    public class Title : BaseEntity<int>
     {
-        PratisyenDoktor = 1,
-        UzmanDoktor,
-        OperatorDoktor,
-        Yardımcıdocent,
-        Docent,
-        Profesor,
-        Ordinaryus
+        public string TitleName { get; set; }
+        public ICollection<Doctor> Doctors { get; set; }
     }
 }

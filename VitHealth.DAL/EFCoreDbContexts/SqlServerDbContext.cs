@@ -14,10 +14,11 @@ namespace VitHealth.DAL.EFCoreDbContexts
         {
 
         }
-
+        public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Policlinic> Policlinics { get; set; }
+        public DbSet<Title> Titles { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
