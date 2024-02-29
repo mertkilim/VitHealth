@@ -23,13 +23,13 @@ namespace VitHealth.DAL.Repositories.Concrete
             int sonuc = 0;
             try
             {
-                db.Set<T>().AddAsync(entity);
+                await db.Set<T>().AddAsync(entity);
                 sonuc = await db.SaveChangesAsync();
             }
             catch (Exception ex)
             {
 
-                await Console.Out.WriteLineAsync(ex.Message);
+                Console.WriteLine(ex.Message);
             }
 
             return sonuc;

@@ -23,7 +23,7 @@ namespace VitHealth.DAL.Migrations
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Age = table.Column<int>(type: "int", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 2, 29, 0, 2, 13, 123, DateTimeKind.Utc).AddTicks(6119)),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 2, 29, 22, 15, 31, 11, DateTimeKind.Utc).AddTicks(3523)),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -38,7 +38,7 @@ namespace VitHealth.DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PoliclinicName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 2, 29, 0, 2, 13, 123, DateTimeKind.Utc).AddTicks(7601)),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 2, 29, 22, 15, 31, 11, DateTimeKind.Utc).AddTicks(5739)),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -52,8 +52,8 @@ namespace VitHealth.DAL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TitleName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TitleName = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 2, 29, 22, 15, 31, 11, DateTimeKind.Utc).AddTicks(7440)),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -94,10 +94,10 @@ namespace VitHealth.DAL.Migrations
                     DoctorName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     DoctorSurname = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     IdentificationNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PoliclinicId = table.Column<int>(type: "int", nullable: false),
-                    TitleId = table.Column<int>(type: "int", nullable: false),
-                    Hours = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 2, 29, 0, 2, 13, 123, DateTimeKind.Utc).AddTicks(4207)),
+                    PoliclinicId = table.Column<int>(type: "int", nullable: true),
+                    TitleId = table.Column<int>(type: "int", nullable: true),
+                    Hours = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 2, 29, 22, 15, 31, 11, DateTimeKind.Utc).AddTicks(946)),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -107,14 +107,12 @@ namespace VitHealth.DAL.Migrations
                         name: "FK_Doctors_Policlinics_PoliclinicId",
                         column: x => x.PoliclinicId,
                         principalTable: "Policlinics",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Doctors_Titles_TitleId",
                         column: x => x.TitleId,
                         principalTable: "Titles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -127,7 +125,7 @@ namespace VitHealth.DAL.Migrations
                     DoctorId = table.Column<int>(type: "int", nullable: true),
                     PoliclinicId = table.Column<int>(type: "int", nullable: true),
                     Time = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 2, 29, 22, 15, 31, 10, DateTimeKind.Utc).AddTicks(7670)),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>

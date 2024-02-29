@@ -6,8 +6,8 @@ namespace VitHealth.Entities.Concrete
     {
         public string PoliclinicName { get; set; }
         public ICollection<Doctor>? Doctors { get; set; }
-        public ICollection<Appointment> Appointments { get; set; }
-        public ICollection<Patient> Patients { get; set; }
+        public ICollection<Appointment>? Appointments { get; set; }
+        public ICollection<Patient>? Patients { get; set; }
 
     }
 }

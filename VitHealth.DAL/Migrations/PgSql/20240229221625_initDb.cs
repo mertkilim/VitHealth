@@ -25,7 +25,7 @@ namespace VitHealth.DAL.Migrations.PgSql
                     BirthDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Age = table.Column<int>(type: "integer", nullable: false),
                     PhoneNumber = table.Column<string>(type: "character varying(11)", maxLength: 11, nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2024, 2, 29, 0, 9, 28, 602, DateTimeKind.Utc).AddTicks(8300)),
+                    CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2024, 2, 29, 22, 16, 25, 639, DateTimeKind.Utc).AddTicks(2676)),
                     UpdateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
@@ -40,7 +40,7 @@ namespace VitHealth.DAL.Migrations.PgSql
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     PoliclinicName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2024, 2, 29, 0, 9, 28, 602, DateTimeKind.Utc).AddTicks(9703)),
+                    CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2024, 2, 29, 22, 16, 25, 639, DateTimeKind.Utc).AddTicks(7014)),
                     UpdateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
@@ -54,8 +54,8 @@ namespace VitHealth.DAL.Migrations.PgSql
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    TitleName = table.Column<string>(type: "text", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    TitleName = table.Column<string>(type: "character varying(70)", maxLength: 70, nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2024, 2, 29, 22, 16, 25, 639, DateTimeKind.Utc).AddTicks(8888)),
                     UpdateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
@@ -96,10 +96,10 @@ namespace VitHealth.DAL.Migrations.PgSql
                     DoctorName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     DoctorSurname = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     IdentificationNumber = table.Column<string>(type: "text", nullable: false),
-                    PoliclinicId = table.Column<int>(type: "integer", nullable: false),
-                    TitleId = table.Column<int>(type: "integer", nullable: false),
-                    Hours = table.Column<List<TimeOnly>>(type: "time without time zone[]", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2024, 2, 29, 0, 9, 28, 602, DateTimeKind.Utc).AddTicks(6346)),
+                    PoliclinicId = table.Column<int>(type: "integer", nullable: true),
+                    TitleId = table.Column<int>(type: "integer", nullable: true),
+                    Hours = table.Column<List<TimeOnly>>(type: "time without time zone[]", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2024, 2, 29, 22, 16, 25, 638, DateTimeKind.Utc).AddTicks(9929)),
                     UpdateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
@@ -109,14 +109,12 @@ namespace VitHealth.DAL.Migrations.PgSql
                         name: "FK_Doctors_Policlinics_PoliclinicId",
                         column: x => x.PoliclinicId,
                         principalTable: "Policlinics",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Doctors_Titles_TitleId",
                         column: x => x.TitleId,
                         principalTable: "Titles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -129,7 +127,7 @@ namespace VitHealth.DAL.Migrations.PgSql
                     DoctorId = table.Column<int>(type: "integer", nullable: true),
                     PoliclinicId = table.Column<int>(type: "integer", nullable: true),
                     Time = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2024, 2, 29, 22, 16, 25, 638, DateTimeKind.Utc).AddTicks(7802)),
                     UpdateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>

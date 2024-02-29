@@ -62,7 +62,9 @@ namespace VitHealth.DAL.Migrations.PgSql
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("timestamp with time zone");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValue(new DateTime(2024, 2, 29, 22, 16, 25, 638, DateTimeKind.Utc).AddTicks(7802));
 
                     b.Property<int?>("DoctorId")
                         .HasColumnType("integer");
@@ -101,7 +103,7 @@ namespace VitHealth.DAL.Migrations.PgSql
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2024, 2, 29, 0, 9, 28, 602, DateTimeKind.Utc).AddTicks(6346));
+                        .HasDefaultValue(new DateTime(2024, 2, 29, 22, 16, 25, 638, DateTimeKind.Utc).AddTicks(9929));
 
                     b.Property<string>("DoctorName")
                         .IsRequired()
@@ -114,17 +116,16 @@ namespace VitHealth.DAL.Migrations.PgSql
                         .HasColumnType("character varying(50)");
 
                     b.Property<List<TimeOnly>>("Hours")
-                        .IsRequired()
                         .HasColumnType("time without time zone[]");
 
                     b.Property<string>("IdentificationNumber")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("PoliclinicId")
+                    b.Property<int?>("PoliclinicId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("TitleId")
+                    b.Property<int?>("TitleId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime?>("UpdateDate")
@@ -156,7 +157,7 @@ namespace VitHealth.DAL.Migrations.PgSql
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2024, 2, 29, 0, 9, 28, 602, DateTimeKind.Utc).AddTicks(8300));
+                        .HasDefaultValue(new DateTime(2024, 2, 29, 22, 16, 25, 639, DateTimeKind.Utc).AddTicks(2676));
 
                     b.Property<string>("IdentificationNumber")
                         .IsRequired()
@@ -197,7 +198,7 @@ namespace VitHealth.DAL.Migrations.PgSql
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2024, 2, 29, 0, 9, 28, 602, DateTimeKind.Utc).AddTicks(9703));
+                        .HasDefaultValue(new DateTime(2024, 2, 29, 22, 16, 25, 639, DateTimeKind.Utc).AddTicks(7014));
 
                     b.Property<string>("PoliclinicName")
                         .IsRequired()
@@ -221,11 +222,14 @@ namespace VitHealth.DAL.Migrations.PgSql
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("timestamp with time zone");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValue(new DateTime(2024, 2, 29, 22, 16, 25, 639, DateTimeKind.Utc).AddTicks(8888));
 
                     b.Property<string>("TitleName")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(70)
+                        .HasColumnType("character varying(70)");
 
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("timestamp with time zone");
@@ -290,15 +294,11 @@ namespace VitHealth.DAL.Migrations.PgSql
                 {
                     b.HasOne("VitHealth.Entities.Concrete.Policlinic", "Policlinic")
                         .WithMany("Doctors")
-                        .HasForeignKey("PoliclinicId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PoliclinicId");
 
                     b.HasOne("VitHealth.Entities.Concrete.Title", "Title")
                         .WithMany("Doctors")
-                        .HasForeignKey("TitleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TitleId");
 
                     b.Navigation("Policlinic");
 

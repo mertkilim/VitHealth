@@ -9,7 +9,7 @@ namespace VitHealth.Entities.EntityConfig.Abstract
         public virtual void Configure(EntityTypeBuilder<T> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property<DateTime>(p => p.CreateDate).HasDefaultValue((DateTime.UtcNow).AddHours(3));
+            builder.Property<DateTime>(p => p.CreateDate).HasDefaultValue((DateTime.UtcNow));
         }
     }
 }

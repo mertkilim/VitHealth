@@ -61,7 +61,9 @@ namespace VitHealth.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2024, 2, 29, 22, 15, 31, 10, DateTimeKind.Utc).AddTicks(7670));
 
                     b.Property<int?>("DoctorId")
                         .HasColumnType("int");
@@ -100,7 +102,7 @@ namespace VitHealth.DAL.Migrations
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 2, 29, 0, 2, 13, 123, DateTimeKind.Utc).AddTicks(4207));
+                        .HasDefaultValue(new DateTime(2024, 2, 29, 22, 15, 31, 11, DateTimeKind.Utc).AddTicks(946));
 
                     b.Property<string>("DoctorName")
                         .IsRequired()
@@ -113,17 +115,16 @@ namespace VitHealth.DAL.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Hours")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("IdentificationNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PoliclinicId")
+                    b.Property<int?>("PoliclinicId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TitleId")
+                    b.Property<int?>("TitleId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateDate")
@@ -155,7 +156,7 @@ namespace VitHealth.DAL.Migrations
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 2, 29, 0, 2, 13, 123, DateTimeKind.Utc).AddTicks(6119));
+                        .HasDefaultValue(new DateTime(2024, 2, 29, 22, 15, 31, 11, DateTimeKind.Utc).AddTicks(3523));
 
                     b.Property<string>("IdentificationNumber")
                         .IsRequired()
@@ -196,7 +197,7 @@ namespace VitHealth.DAL.Migrations
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 2, 29, 0, 2, 13, 123, DateTimeKind.Utc).AddTicks(7601));
+                        .HasDefaultValue(new DateTime(2024, 2, 29, 22, 15, 31, 11, DateTimeKind.Utc).AddTicks(5739));
 
                     b.Property<string>("PoliclinicName")
                         .IsRequired()
@@ -220,11 +221,14 @@ namespace VitHealth.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2024, 2, 29, 22, 15, 31, 11, DateTimeKind.Utc).AddTicks(7440));
 
                     b.Property<string>("TitleName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
 
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
@@ -289,15 +293,11 @@ namespace VitHealth.DAL.Migrations
                 {
                     b.HasOne("VitHealth.Entities.Concrete.Policlinic", "Policlinic")
                         .WithMany("Doctors")
-                        .HasForeignKey("PoliclinicId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PoliclinicId");
 
                     b.HasOne("VitHealth.Entities.Concrete.Title", "Title")
                         .WithMany("Doctors")
-                        .HasForeignKey("TitleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TitleId");
 
                     b.Navigation("Policlinic");
 

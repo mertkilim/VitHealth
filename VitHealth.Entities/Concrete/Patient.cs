@@ -23,9 +23,9 @@ namespace VitHealth.Entities.Concrete
         }
         public int Age { get; private set; }
         public string PhoneNumber { get; set; }
-        public ICollection<Doctor> Doctors { get; set; }
-        public ICollection<Policlinic> Policlinics { get; set; }
-        public ICollection<Appointment> Appointments { get; set; }
+        public ICollection<Doctor>? Doctors { get; set; }
+        public ICollection<Policlinic>? Policlinics { get; set; }
+        public ICollection<Appointment>? Appointments { get; set; }
 
         private void CalculateAge()
         {
